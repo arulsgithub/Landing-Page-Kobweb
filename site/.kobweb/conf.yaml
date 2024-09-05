@@ -1,0 +1,14 @@
+site:
+  title: "LandingPage"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/kotlin-webpack/js/developmentExecutable/landingpage.js"
+      api: "build/libs/landingpage.jar"
+    prod:
+      script: "build/kotlin-webpack/js/productionExecutable/landingpage.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
