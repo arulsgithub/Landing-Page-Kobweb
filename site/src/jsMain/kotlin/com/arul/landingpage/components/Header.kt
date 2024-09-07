@@ -15,33 +15,58 @@ import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.silk.components.graphics.Image
+import com.varabyte.kobweb.silk.components.icons.fa.FaBars
+import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.components.style.toModifier
+import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
+import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
+import com.varabyte.kobweb.silk.style.toModifier
+
 
 @Composable
 fun Header() {
 
+    val breakpoint = rememberBreakpoint()
     Row (
-        modifier = Modifier.fillMaxWidth(80.percent)
-            .margin(topBottom = 50.px),
+        modifier = Modifier.fillMaxWidth(
+            if(breakpoint > Breakpoint.MD) 80.percent else 95.percent
+        )
+            .margin(topBottom = 30.px),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ){
-        LeftHeader()
-        RightHeader()
+        LeftHeader(breakpoint = breakpoint)
+        if(breakpoint > Breakpoint.MD) {
+            RightHeader()
+        }
     }
 }
 
 @Composable
-fun LeftHeader(){
+fun LeftHeader(breakpoint: Breakpoint){
 
-    Image(
-        modifier = LogoStyle.toModifier(),
-        src = Res.image.logo,
-        description = "logo"
-    )
+    Row(
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        if (breakpoint <= Breakpoint.MD) {
+            FaBars(
+                modifier = Modifier
+                    .padding(right = 15.px),
+                size =  IconSize.SM
+            )
+        }
+        Image(
+            modifier = LogoStyle.toModifier()
+                .size(
+                    if(breakpoint > Breakpoint.MD) 120.px else 70.px
+                ),
+            src = Res.image.logo,
+            description = "logo"
+        )
+    }
 }
 
 @Composable

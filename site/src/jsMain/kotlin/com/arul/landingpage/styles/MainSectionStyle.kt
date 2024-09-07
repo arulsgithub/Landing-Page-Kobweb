@@ -9,6 +9,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.transition
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.anyLink
 import com.varabyte.kobweb.silk.components.style.hover
+import org.jetbrains.compose.web.css.Color
 import org.jetbrains.compose.web.css.deg
 import org.jetbrains.compose.web.css.ms
 
@@ -41,6 +42,23 @@ val LogoStyle by ComponentStyle {
     hover{
         Modifier
             .transform { rotate((-10).deg) }
+            .color(Theme.Primary.rgb)
+    }
+}
+
+val SocialLinkStyle by ComponentStyle {
+
+    base {
+        Modifier
+            .color(Color.gray)
+            .transition(CSSTransition(property = "color",duration = 200.ms))
+    }
+    anyLink{
+        Modifier
+            .color(Color.gray)
+    }
+    hover{
+        Modifier
             .color(Theme.Primary.rgb)
     }
 }
