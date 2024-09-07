@@ -5,7 +5,10 @@ import com.arul.landingpage.models.Section
 import com.arul.landingpage.models.Theme
 import com.arul.landingpage.pages.utils.Constants.FONT_FAMILY
 import com.arul.landingpage.pages.utils.Res
+import com.arul.landingpage.styles.LogoStyle
+import com.arul.landingpage.styles.NavigationItemStyle
 import com.varabyte.kobweb.compose.css.FontWeight
+import com.varabyte.kobweb.compose.css.TextDecorationLine
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
@@ -13,7 +16,7 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.navigation.Link
-import org.jetbrains.compose.web.css.Color
+import com.varabyte.kobweb.silk.components.style.toModifier
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
@@ -35,6 +38,7 @@ fun Header() {
 fun LeftHeader(){
 
     Image(
+        modifier = LogoStyle.toModifier(),
         src = Res.image.logo,
         description = "logo"
     )
@@ -55,12 +59,12 @@ fun RightHeader(){
             Link(
                 path = it.path,
                 text = it.title,
-                modifier = Modifier
+                modifier = NavigationItemStyle.toModifier()
                     .padding(right = 30.px)
                     .fontFamily(FONT_FAMILY)
                     .fontSize(18.px)
                     .fontWeight(FontWeight.Normal)
-                    .color(Color.black)
+                    .textDecorationLine(TextDecorationLine.None)
             )
         }
     }
