@@ -3,8 +3,8 @@ package com.arul.landingpage.components
 import androidx.compose.runtime.Composable
 import com.arul.landingpage.models.Section
 import com.arul.landingpage.models.Theme
-import com.arul.landingpage.pages.utils.Constants.FONT_FAMILY
-import com.arul.landingpage.pages.utils.Res
+import com.arul.landingpage.utils.Constants.FONT_FAMILY
+import com.arul.landingpage.utils.Res
 import com.arul.landingpage.styles.LogoStyle
 import com.arul.landingpage.styles.NavigationItemStyle
 import com.varabyte.kobweb.compose.css.FontWeight

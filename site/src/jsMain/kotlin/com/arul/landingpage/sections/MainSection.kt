@@ -1,15 +1,17 @@
-package com.arul.landingpage.pages.sections
+package com.arul.landingpage.sections
 
 import androidx.compose.runtime.Composable
 import com.arul.landingpage.components.Header
 import com.arul.landingpage.components.SocialBar
 import com.arul.landingpage.models.Section
 import com.arul.landingpage.models.Theme
-import com.arul.landingpage.pages.utils.Constants.FONT_FAMILY
-import com.arul.landingpage.pages.utils.Constants.LOREM
-import com.arul.landingpage.pages.utils.Constants.SECTION_WIDTH
-import com.arul.landingpage.pages.utils.Res
-import com.arul.landingpage.pages.utils.Res.image.mainImage
+import com.arul.landingpage.utils.Constants.FONT_FAMILY
+import com.arul.landingpage.utils.Constants.LOREM
+import com.arul.landingpage.utils.Constants.SECTION_WIDTH
+import com.arul.landingpage.utils.Res
+import com.arul.landingpage.utils.Res.image.mainImage
+import com.arul.landingpage.styles.MainTextButtonStyle
+import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.ObjectFit
 import com.varabyte.kobweb.compose.css.TextDecorationLine
@@ -27,6 +29,7 @@ import com.varabyte.kobweb.silk.components.graphics.Image
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.navigation.Link
+import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.jetbrains.compose.web.css.percent
@@ -38,7 +41,7 @@ import org.jetbrains.compose.web.dom.Text
 @Composable
 fun MainSection(){
 
-    var breakpoint = rememberBreakpoint()
+
     Box(
         modifier = Modifier
             .maxWidth(SECTION_WIDTH.px)
@@ -46,7 +49,7 @@ fun MainSection(){
         contentAlignment = Alignment.TopCenter
     ) {
         MainBackground()
-        MainContent(breakpoint = breakpoint)
+        MainContent()
     }
 }
 
@@ -64,8 +67,9 @@ fun MainBackground(){
 }
 
 @Composable
-fun MainContent(breakpoint: Breakpoint){
+fun MainContent(){
 
+    var breakpoint = rememberBreakpoint()
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -162,12 +166,13 @@ fun MainText(breakpoint: Breakpoint){
                 Text(LOREM)
             }
             Button(
-                attrs = Modifier
+                attrs = MainTextButtonStyle.toModifier()
                     .height(40.px)
                     .border(width = 0.px)
-                    .borderRadius(r = 10.px)
+                    .borderRadius(r = 5.px)
                     .backgroundColor(Theme.Primary.rgb)
                     .color(Colors.White)
+                    .cursor(Cursor.Pointer)
                     .toAttrs()
             ) {
                 Link(
@@ -191,7 +196,7 @@ fun MainImage(){
         verticalArrangement = Arrangement.Center
     ){
         Image(
-            modifier = Modifier.fillMaxWidth().size(600.px),
+            modifier = Modifier.fillMaxWidth().size(500.px),
             src = mainImage,
             description = "My image"
         )
