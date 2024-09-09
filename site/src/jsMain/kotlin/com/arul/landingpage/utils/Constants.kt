@@ -15,5 +15,9 @@ object Res{
         const val logo = "devlogo.svg"
         const val mainImage = "profile.png"
         const val aboutImage = "developerimg.jpg"
+        const val androidImg = "android_icon.svg"
+        const val iosImg = "apple_icon.svg"
+        const val webImg = "web_icon.svg"
+        const val uiuxImg = "design_icon.svg"
     }
 }

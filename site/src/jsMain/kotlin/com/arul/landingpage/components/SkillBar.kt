@@ -46,7 +46,7 @@ fun SkillBar(
                     .margin(topBottom = 0.px)
                     .fontFamily(FONT_FAMILY)
                     .fontSize(14.px)
-                    .fontWeight(FontWeight.Normal)
+                    .fontWeight(FontWeight.Light)
                     .color(Theme.Secondary.rgb)
                     .toAttrs()
             ) {
@@ -57,7 +57,7 @@ fun SkillBar(
                     .margin(topBottom = 0.px)
                     .fontFamily(FONT_FAMILY)
                     .fontSize(14.px)
-                    .fontWeight(FontWeight.Normal)
+                    .fontWeight(FontWeight.Light)
                     .color(Theme.Secondary.rgb)
                     .toAttrs()
             ) {

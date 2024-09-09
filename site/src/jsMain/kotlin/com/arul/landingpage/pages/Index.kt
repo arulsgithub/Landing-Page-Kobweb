@@ -4,6 +4,7 @@ import androidx.compose.runtime.*
 import com.arul.landingpage.sections.AboutMeContent
 import com.arul.landingpage.sections.AboutMeSection
 import com.arul.landingpage.sections.MainSection
+import com.arul.landingpage.sections.ServiceSection
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
@@ -26,5 +27,6 @@ fun HomePage() {
     ) {
         MainSection()
         AboutMeSection()
+        ServiceSection()
     }
 }
