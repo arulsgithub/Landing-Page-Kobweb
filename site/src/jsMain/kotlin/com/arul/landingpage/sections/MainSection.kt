@@ -11,6 +11,8 @@ import com.arul.landingpage.utils.Constants.SECTION_WIDTH
 import com.arul.landingpage.utils.Res
 import com.arul.landingpage.utils.Res.image.mainImage
 import com.arul.landingpage.styles.MainTextButtonStyle
+import com.arul.landingpage.styles.mainImageStyle
+import com.arul.landingpage.utils.Res.image.mainImage1
 import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.ObjectFit
@@ -196,8 +198,8 @@ fun MainImage(){
         verticalArrangement = Arrangement.Center
     ){
         Image(
-            modifier = Modifier.fillMaxWidth().size(500.px),
-            src = mainImage,
+            modifier = mainImageStyle.toModifier().fillMaxWidth().height(600.px).width(600.px),
+            src = mainImage1,
             description = "My image"
         )
     }

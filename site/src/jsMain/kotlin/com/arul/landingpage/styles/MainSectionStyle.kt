@@ -3,18 +3,15 @@ package com.arul.landingpage.styles
 import androidx.compose.runtime.Composable
 import com.arul.landingpage.models.Theme
 import com.varabyte.kobweb.compose.css.CSSTransition
+import com.varabyte.kobweb.compose.css.TransitionProperty
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.color
-import com.varabyte.kobweb.compose.ui.modifiers.transform
-import com.varabyte.kobweb.compose.ui.modifiers.transition
-import com.varabyte.kobweb.compose.ui.modifiers.width
+import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.components.style.ComponentStyle
 import com.varabyte.kobweb.silk.components.style.anyLink
 import com.varabyte.kobweb.silk.components.style.hover
-import org.jetbrains.compose.web.css.Color
-import org.jetbrains.compose.web.css.deg
-import org.jetbrains.compose.web.css.ms
-import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.ExperimentalComposeWebApi
+import org.jetbrains.compose.web.css.*
 
 val NavigationItemStyle by ComponentStyle {
 
@@ -74,5 +71,23 @@ val MainTextButtonStyle by ComponentStyle{
     }
     hover{
         Modifier.width(120.px)
+    }
+}
+
+@OptIn(ExperimentalComposeWebApi::class)
+val mainImageStyle by ComponentStyle{
+
+    base {
+        Modifier
+            .styleModifier {
+                filter { grayscale(100.percent) }
+            }
+            .transition(CSSTransition(property = TransitionProperty.All, duration = 200.ms))
+    }
+    hover{
+        Modifier
+            .styleModifier {
+                filter { grayscale(0.percent) }
+            }
     }
 }

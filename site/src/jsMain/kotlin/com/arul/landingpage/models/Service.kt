@@ -38,7 +38,19 @@ enum class Service(
         title = "UI/UX Design",
         subTitle = "Jetpack Compose (Intermediate)",
         desc = LOREM_SHORT
+    ),
+    PT(
+        img = Res.image.pentest,
+        imgDesc = "pentesting",
+        title = "Penetration testing",
+        subTitle = "Metasploit (Beginner)",
+        desc = LOREM_SHORT
+    ),
+    Android1(
+        img = Res.image.androidImg,
+        imgDesc = "android",
+        title = "Android Development",
+        subTitle = "Kotlin-Jetpack Compose (Intermediate)",
+        desc = LOREM_SHORT
     )
-
-
 }
