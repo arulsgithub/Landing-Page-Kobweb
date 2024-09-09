@@ -1,6 +1,6 @@
 package com.arul.landingpage.sections
 
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import com.arul.landingpage.components.SectionTitle
 import com.arul.landingpage.components.SkillBar
 import com.arul.landingpage.models.Section
@@ -13,6 +13,8 @@ import com.arul.landingpage.utils.Res.image.aboutImage
 import com.arul.landingpage.utils.Res.image.mainImage
 import com.arul.landingpage.styles.aboutImageStyle
 import com.arul.landingpage.styles.aboutTextStyle
+import com.arul.landingpage.utils.ObserveViewPort
+import com.arul.landingpage.utils.percentageAnimation
 import com.varabyte.kobweb.compose.css.Content
 import com.varabyte.kobweb.compose.css.FontStyle
 import com.varabyte.kobweb.compose.css.FontWeight
@@ -29,6 +31,7 @@ import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.components.style.toModifier
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
@@ -94,6 +97,25 @@ fun AboutMeImage(){
 @Composable
 fun AboutMeText(){
 
+    var scope = rememberCoroutineScope()
+    var animatedPercentage = remember { mutableStateListOf(0,0,0,0,0) }
+
+    var viePortEntered by remember { mutableStateOf(false) }
+    ObserveViewPort(
+        sectionId = Section.About.id,
+        distanceFromTop = 300.0,
+        onViewPortEntered = {
+            viePortEntered = true
+            Skills.entries.forEach {skill ->
+                scope.launch {
+                    percentageAnimation(
+                        percent = skill.percent.value.toInt(),
+                        onUpdate = { animatedPercentage[skill.ordinal] = it}
+                    )
+                }
+            }
+        }
+    )
     Column(
         modifier = Modifier
             .fillMaxWidth(),
@@ -118,7 +140,9 @@ fun AboutMeText(){
         Skills.entries.forEach {
             SkillBar(
                 name = it.title,
-                percentage = it.percent
+                index = it.ordinal,
+                percentage = if (viePortEntered) it.percent else 0.percent,
+                animatedPercent = if(viePortEntered) animatedPercentage[it.ordinal] else 0
             )
         }
     }

@@ -3,6 +3,7 @@ package com.arul.landingpage.components
 import androidx.compose.runtime.Composable
 import com.arul.landingpage.models.Theme
 import com.arul.landingpage.utils.Constants.FONT_FAMILY
+import com.varabyte.kobweb.compose.css.CSSTransition
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
@@ -20,8 +21,10 @@ import org.jetbrains.compose.web.dom.Text
 @Composable
 fun SkillBar(
     name: String,
+    index: Int,
     percentage: CSSSizeValue<CSSUnit.percent> = 50.percent,
-    progressBar: CSSSizeValue<CSSUnit.px> = 5.px
+    progressBar: CSSSizeValue<CSSUnit.px> = 5.px,
+    animatedPercent: Int
 ){
 
     val breakpoint = rememberBreakpoint()
@@ -35,7 +38,7 @@ fun SkillBar(
         Row (
             modifier = Modifier
                 .fillMaxWidth()
-                .margin(bottom = 5.px),
+                .margin(top = 10.px),
             horizontalArrangement = Arrangement.SpaceBetween
         ){
             P(
@@ -58,7 +61,7 @@ fun SkillBar(
                     .color(Theme.Secondary.rgb)
                     .toAttrs()
             ) {
-                Text("${percentage.value}${percentage.unit}")
+                Text("$animatedPercent%")
             }
         }
         Box(modifier = Modifier.fillMaxWidth()){
@@ -73,6 +76,13 @@ fun SkillBar(
                     .fillMaxWidth(percentage)
                     .height(progressBar)
                     .backgroundColor(Theme.Primary.rgb)
+                    .transition(
+                        CSSTransition(
+                            property = "width",
+                            duration = 1000.ms,
+                            delay = 100.ms * index
+                        )
+                    )
             )
         }
     }
